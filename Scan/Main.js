@@ -27,7 +27,7 @@ function Start({navigation}) {
   return (
     <View>
       <Text>Start!</Text>
-      <Button title = "request permissions" onPress={requestCameraPermission} />
+      <Button title = "request permission" onPress={requestCameraPermission} />
     </View>
   );
 }
