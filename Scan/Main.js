@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, PermissionsAndroid, StatusBar} from "react-native";
+import { View, Text, Button, PermissionsAndroid, StatusBar, StyleSheet} from "react-native";
 
 const requestCameraPermission = async() => {
     try{
@@ -23,13 +23,27 @@ const requestCameraPermission = async() => {
 }
 
 
-function Start({navigation}) {
-  return (
-    <View>
-      <Text>Start!</Text>
-      <Button title = "request permissions" onPress={requestCameraPermission} />
-    </View>
-  );
-}
+const App = () => (
+  <View style={styles.container}>
+    <Text style={styles.item}>Try permissions</Text>
+    <Button title="request permissions" onPress={requestCameraPermission} />
+  </View>
+);
 
-export default Start;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
+  item: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
+
+export default App;

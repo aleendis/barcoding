@@ -17,6 +17,8 @@ import {
 
 import {CameraKitCameraScreen} from 'react-native-camera-kit';
 
+
+
 function SelectButton({navigation}) {
   const [qrvalue, setQrvalue] = useState('');
   const [opneScanner, setOpneScanner] = useState(false);
@@ -47,9 +49,11 @@ function SelectButton({navigation}) {
             setQrvalue('');
             setOpneScanner(true);
           } else {
+            console.log('CAMERA permission denied');
             alert('CAMERA permission denied');
           }
         } catch (err) {
+          console.log('CAMERA permission denied');
           alert('Camera permission err', err);
           console.warn(err);
         }
