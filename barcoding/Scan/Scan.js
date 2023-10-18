@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import {setScannedData} from '../Data/import_data';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -15,6 +16,7 @@ export default function App() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    setScannedData(data);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
