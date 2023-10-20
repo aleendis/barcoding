@@ -11,8 +11,9 @@ export const getScannedData = () => {
     return scannedData;
 }
 
-export default function App() {
-}
+export function Import ({route}) {
+    const{ data } = route.params;
+
 return (
     <View style = {StyleSheet.container}>
         <Text> product number: {getScannedData}</Text>
@@ -20,9 +21,11 @@ return (
             <Text>Input product number</Text>
             <TextInput
                 keyboardType="numeric"
-                style = {Styles.Inputs}
+                style = {data}
                 placeholder = '0'
                 onChangeText={getScannedData}/>
         </View>
     </View>
-)
+)}
+
+export default Import;

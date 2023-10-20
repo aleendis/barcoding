@@ -7,6 +7,7 @@ import React from "react";
 
 import Scan from './Scan/Scan';
 import Home from './Scan/Home';
+import import_data from './Data/import_data';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Scanner" component={Scan} />
+        <Stack.Screen name="Import" component={import_data} />
       </Stack.Navigator>
     </NavigationContainer>
   );
