@@ -1,33 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import "react-native-gesture-handler";
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator} from "@react-navigation/stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, {usePermissions} from "react";
+import InitialScreen from './Screen/Intialscreen'; 
+import Scan from './Screen/Scan';
+import LoginScreen from './Screen/LoginScreen';
+import RegisterScreen from './Screen/RegisterScreen';
+import MainScreen from './Screen/MainScreen';
+import SearchScreen from './Screen/SearchScreen';
+import Productregist from './Screen/Product';
+import { navigationRef } from './NavigationManager'; 
 
-import Main from './Scan/Main';
-import Scan from './Scan/Scan';
+import Notification from './Screen/Notification';
+
+import firebase from 'firebase/app';
+import 'firebase/auth';        
+import 'firebase/firestore';  
+import firebaseConfig from './FirebaseConfig'; 
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name = "Main" component = {Main}/>
-        <Tab.Screen name = "Scan" component = {Scan}/>
+function MyTabs() {
+  return(
+    <Tab.Navigator
+      initialRouteName="MainScreen"
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+        headerShown: false
+      }}>
+        <Tab.Screen name = "MainScreen" component={MainScreen}/>
+        <Tab.Screen name = "Notification" component={Notification}/>
       </Tab.Navigator>
-    </NavigationContainer>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator initialRouteName="Initial">
+        <Stack.Screen name="Initial" component={InitialScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Scanner" component={Scan} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
+        <Stack.Screen name='Bottom' component={MyTabs} options={{headerShown: false}}/>
+        <Stack.Screen name='Search' component={SearchScreen} options={{headerShown: false}}/>
+        <Stack.Screen name='Productregist' component={Productregist} options={{headerShown : false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};

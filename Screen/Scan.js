@@ -1,17 +1,29 @@
+// Scan.js
+
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Audio } from 'expo-av';
+import CustomAlert from '../CustomAlert';
 
 const REST_API_KEY = 'f98ace30dbf14b9bbcbc';
 const OPENAPI_URL = 'http://openapi.foodsafetykorea.go.kr/api/';
 
-export default function Scan({ navigation }) {
+export default function Scan({ navigation, route }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [scannedData, setScannedDataLocally] = useState('');
-  const [scannedprnm, setScannedprnm] = useState('');
-  const [scanneddeadline, setScanneddeadline] = useState('');
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [key, setKey] = useState(0); // ì¶”ê°€ëœ ë¶€ë¶„
+
+  const showAlert = (message) => {
+    setAlertMessage(message);
+    setAlertVisible(true);
+  };
+
+  const hideAlert = () => {
+    setAlertVisible(false);
+  };
 
   useEffect(() => {
     (async () => {
@@ -21,47 +33,43 @@ export default function Scan({ navigation }) {
   }, []);
 
   useEffect(() => {
-    if (scannedData) {
-      navigation.navigate('Import', { data: scannedData, prnm, deadline }); // ½ºÄµµÈ µ¥ÀÌÅÍ¸¦ ´ÙÀ½ ½ºÅ©¸°À¸·Î Àü´Þ
+    if (route.params?.scanned) {
+      setScanned(false);
+      setKey((prevKey) => prevKey + 1); // ë³€ê²½ëœ ë¶€ë¶„
     }
-  }, [scannedData, scannedprnm, scanneddeadline, navigation]);
+  }, [route.params?.scanned]);
 
   const handleBarCodeScanned = async ({ data }) => {
     setScanned(true);
-    setScannedDataLocally(data);
     const soundObject = new Audio.Sound();
     try {
       await soundObject.loadAsync(require('../assets/Sound/barcode.mp3'));
       await soundObject.playAsync();
     } catch (error) {
-      console.error('?‚¬?š´?“œ ë¡œë”©ì¤? ?—?Ÿ¬:', error);
+      console.error('ì‚¬ìš´ë“œ ë¡œë”©ì¤‘ ì—ëŸ¬:', error);
     }
     try {
       const result = await getdata(data);
-  
+
       if (result.error) {
-        alert(`Bar code data ${data} has been scanned, but there was an error: ${result.error}`);
+        showAlert(`Bar code data ${data} has been scanned, but there was an error: ${result.error}`);
       } else {
-        alert(`ë°”ì½”?“œë²ˆí˜¸ : ${data} \n? œ?’ˆëª? : ${result.prnm}\n?œ ?†µê¸°í•œ : ${result.deadline}`);
-        setScannedprnm(result.prnm);
-        setScanneddeadline(result.deadline);
+        navigation.navigate('Productregist', { barcodeData: { data, ...result, scanned: false } });
       }
     } catch (error) {
-      console.error('?‹ë³„ë˜ì§? ?•Š?Š” ë°”ì½”?“œ ë²ˆí˜¸', error);
+      console.error('ì‹ë³„ë˜ì§€ ì•ŠëŠ” ë°”ì½”ë“œ ë²ˆí˜¸', error);
+      showAlert('ì‹ë³„ë˜ì§€ ì•ŠëŠ” ë°”ì½”ë“œ ë²ˆí˜¸ìž…ë‹ˆë‹¤.');
     }
-    
   };
-  
-  // API key -> f98ace30dbf14b9bbcbc
+
   const getdata = async (qrvalue) => {
     const response = await fetch(
-        OPENAPI_URL + REST_API_KEY + '/C005/json/1/5/BAR_CD=' +
-        qrvalue,
+      OPENAPI_URL + REST_API_KEY + '/C005/json/1/5/BAR_CD=' + qrvalue,
       {
         method: 'GET',
       }
     );
-  
+
     if (response.status === 200) {
       const responseJson = await response.json();
       const prnm = responseJson.C005.row[0].PRDLST_NM;
@@ -71,8 +79,7 @@ export default function Scan({ navigation }) {
       return { error: 'There was an error' };
     }
   };
-  
-  
+
   if (hasPermission === null) {
     return <Text>Requesting camera permission</Text>;
   }
@@ -83,18 +90,20 @@ export default function Scan({ navigation }) {
   return (
     <View style={styles.container}>
       <BarCodeScanner
+        key={key} 
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
         <View style={styles.scanAgain}>
-          <Text>Scan again?</Text>
+          <Text>ìŠ¤ìº”</Text>
           <Text style={styles.scanAgainText} onPress={() => setScanned(false)}>
-            Tap Here
+            ë‹¤ì‹œí•˜ê¸°
           </Text>
         </View>
       )}
 
+      <CustomAlert isVisible={isAlertVisible} onClose={hideAlert} message={alertMessage} />
     </View>
   );
 }
