@@ -7,7 +7,7 @@
 # 사용 기술
 <img src="https://img.shields.io/badge/ReactNative-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 # All
-![바코딩 전체 화면](https://github.com/user-attachments/assets/059e94e3-4b83-491a-9a92-80a309c72a7f)
+![바코딩 전체 화면](https://github.com/user-attachments/assets/b793d3d0-de79-489d-94e5-24448be91c2e)
 # Login Screen
 Firebase를 사용하여 회원가입 및 로그인을 구현했습니다.
 ![바코딩_로그인화면](https://github.com/user-attachments/assets/57d72ef4-0247-4621-9f09-bf1868c34316)
