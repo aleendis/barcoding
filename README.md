@@ -1,5 +1,6 @@
-# barcoding
+# Barcoding
 
-# Main Screen
-사용자에게 남은 유통기한에 따라 초록 -> 노랑 -> 빨강순으로 색을 넣어 알림
-![KakaoTalk_20231130_204824311](https://github.com/user-attachments/assets/cd455325-d75c-4eca-8645-38e1cafc88c6)
+# Login Screen
+Firebase를 사용하여 회원가입 및 로그인을 구현했습니다.
+![KakaoTalk_20231025_221725408](https://github.com/user-attachments/assets/bc884817-ebc0-4789-a3fb-3afbc292af5e)
+
