@@ -6,6 +6,7 @@
 이효준 전재진 장은지
 # 사용 기술
 <img src="https://img.shields.io/badge/ReactNative-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+
 # All
 ![바코딩 전체 화면](https://github.com/user-attachments/assets/b793d3d0-de79-489d-94e5-24448be91c2e)
 # Login Screen
