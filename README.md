@@ -4,7 +4,7 @@
 안드로이드와 IOS 동시 개발을 위해 React Native를 사용하여 개발했습니다.
 # 팀원
 이효준 전재진 장은지
-# <h1>📚 STACKS</h1>
+<h1>📚 STACKS</h1>
 언어: <img src="https://img.shields.io/badge/ReactNative-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 <br>
 
