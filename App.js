@@ -9,6 +9,7 @@ import RegisterScreen from './Screen/RegisterScreen';
 import MainScreen from './Screen/MainScreen';
 import SearchScreen from './Screen/SearchScreen';
 import Productregist from './Screen/Product';
+import ProductDetail from './Screen/ProductDetail';
 import { navigationRef } from './NavigationManager'; 
 
 import Notification from './Screen/Notification';
@@ -46,6 +47,7 @@ export default function App() {
         <Stack.Screen name='Bottom' component={MyTabs} options={{headerShown: false}}/>
         <Stack.Screen name='Search' component={SearchScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Productregist' component={Productregist} options={{headerShown : false}}/>
+        <Stack.Screen name='ProductDetail' component={ProductDetail} options={{headerShown : false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

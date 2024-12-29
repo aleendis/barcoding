@@ -51,7 +51,7 @@ const ProductRegist = ({ route, navigation }) => {
         keyboardType='numeric'
         style={styles.input}
         placeholder="유통기한"
-        value={expiryDate} 
+        value={expiryDate}
         onChangeText={(text) => setExpiryDate(text)}
       />
       <TextInput

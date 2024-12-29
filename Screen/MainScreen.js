@@ -100,11 +100,19 @@ const MainScreen = () => {
     }
   };
 
+  const showProductDetail = (item) => {
+    navigation.navigate('ProductDetail', {
+      prnm: item.prnm,
+      data: item.data,
+      deadline: item.deadline,
+    });
+  };
+
   return (
     <View style={Styles.container}>
       <Header onSearchPress={Searchbt} selectedCategory={selectedCategory} />
       <View style={Styles.horizontalLine} />
-      <ScannedItemList scannedItems={scannedItems} onDeleteItem = {deleteItem} />
+      <ScannedItemList scannedItems={scannedItems} onDeleteItem = {deleteItem} onPressItem={showProductDetail} />
       <RoundButton onPress={() => navigation.navigate('Scanner')} />
     </View>
   );
@@ -124,12 +132,12 @@ const Header = ({ onSearchPress, selectedCategory, categories, onSelectCategory 
   </View>
 );
 
-const ScannedItemList = ({ scannedItems, onDeleteItem }) => (
+const ScannedItemList = ({ scannedItems, onDeleteItem, onPressItem }) => (
   <FlatList
     data={scannedItems}
     keyExtractor={(item, index) => item.docId}
     renderItem={({ item }) => (
-      <TouchableOpacity onLongPress={() => onDeleteItem(item.docId)}>
+      <TouchableOpacity onLongPress={() => onDeleteItem(item.docId)} onPress={() => onPressItem(item)}>
       <View style={Styles.scannedItem}>
         <View style={Styles.itemInfo}>
           <Text style={Styles.deadline}>{`${item.deadline}`}</Text>
