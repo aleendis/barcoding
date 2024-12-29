@@ -1,5 +1,11 @@
 # Barcoding
-안드로이드와 IOS 동시 개발을 위해 React Native를 사용하여 개발했습니다.
+# 프로젝트 소개
+일상적으로 많이 나오는 음식물 쓰레기를 줄이기 위해 유통기한을 등록하고 임박한 물품을 알려주어 소비를 할 수 있게 도와주는 앱
+안드로이드와 IOS 동시 개발을 위해 React Native를 사용하여 개발
+# 팀원
+이효준 전재진 장은지
+# 사용 기술
+<img src="https://img.shields.io/badge/ReactNative-E34F26?style=for-the-badge&logo=reactnative&logoColor=white">
 # All
 ![바코딩 전체 화면](https://github.com/user-attachments/assets/059e94e3-4b83-491a-9a92-80a309c72a7f)
 # Login Screen
