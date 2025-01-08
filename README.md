@@ -6,7 +6,7 @@
 이효준 전재진 장은지
 <h1>📚 STACKS</h1>
 
-언어: <img src="https://img.shields.io/badge/ReactNative-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+언어: <img src="https://img.shields.io/badge/JavaScript-61DAFB?style=for-the-badge&logo=javascript&logoColor=white">
 <br>
 
 도구: <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white"> 
